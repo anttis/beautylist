@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>beautylist</title>
+  <link rel="stylesheet" type="text/css" href="../src/jquery.beautylist.css">
+  <link rel="stylesheet" type="text/css" href="examples.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../src/jquery.beautylist.js"></script>
+</head>
+
+<body>
+<h1>Examples</h1>
+<pre>
+  $('#input-1').beautyList({
+    allowDuplicates: false,
+    dynamicInputSizing: true,
+    inPlaceEdit: true,
+    saveOnSpace: true,
+    validators: [
+      function(isA) { return isA === 'a'}
+    ]
+  })
+</pre>
+<div id="lol-1">
+  <input id="input-1"  type="text"/>
+</div>
+
+<pre>
+  $('#input-2').beautyList({
+    allowDuplicates: true,
+    dynamicInputSizing: false,
+    inPlaceEdit: true,
+    separator: /(?:,)/g,
+    saveOnSpace: false,
+    placeholderText: 'Input here'
+  })
+</pre>
+<div id="lol-2">
+  <input id="input-2"  type="text"/>
+</div>
+
+<pre>
+  $('#input-3').beautyList({
+    dynamicInputSizing: true
+  })
+</pre>
+
+<div id="lol-3">
+  <input id="input-3"  type="text" value="foo bar baz"/>
+</div>
+<script type="text/javascript">
+  $('document').ready(function(){
+    $('#input-1').beautyList({
+      allowDuplicates: false,
+      dynamicInputSizing: true,
+      inPlaceEdit: true,
+      saveOnSpace: true,
+      validators: [
+        function(isA) { return isA === 'a'}
+      ]
+    })
+
+    $('#input-2').beautyList({
+      allowDuplicates: true,
+      dynamicInputSizing: false,
+      inPlaceEdit: true,
+      separator: /(?:,)/g,
+      saveOnSpace: false,
+      placeholderText: 'Input here'
+    })
+
+    $('#input-3').beautyList({ dynamicInputSizing: true })
+  })
+</script>
+</body>
+</html>
