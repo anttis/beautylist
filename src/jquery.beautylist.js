@@ -319,8 +319,6 @@
       }
 
       this.initInputResizing = function() {
-        var self = this
-
         input
           .css('width', '100%')
           .parent().css('width', '100%')
