@@ -323,10 +323,7 @@
         input
           .css('width', '100%')
           .parent().css('width', '100%')
-          .bind('keyup keydown', function(){
-            ruler.text(input.val())
-            self.resizeInput()
-          })
+          .bind('keyup keydown', self.stretchInputToGivenText)
         input.bind('blur', function() {
           ruler.text(settings.placeholderText ? settings.placeholderText : '')
           self.resizeInput()
