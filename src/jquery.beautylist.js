@@ -138,7 +138,6 @@
             break
           }
           default: {
-            if(settings.dynamicInputSizing) { self.stretchInputToGivenText() }
             break
           }
         }
