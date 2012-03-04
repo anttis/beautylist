@@ -137,6 +137,7 @@
             break
           }
           default: {
+            if(settings.dynamicInputSizing) { self.stretchInputToGivenText() }
             break
           }
         }
@@ -330,6 +331,11 @@
           ruler.text(settings.placeholderText ? settings.placeholderText : '')
           self.resizeInput()
         })
+      }
+
+      this.stretchInputToGivenText = function() {
+        ruler.text(input.val())
+        self.resizeInput()
       }
 
       this.resizeInput = function(event) {
