@@ -120,7 +120,7 @@
       this.handleKeyEvent = function(event) {
         switch (event.which) {
           case keycodes.SPACE:{
-            if(!settings.saveOnSpace) { break; }
+            if(!settings.saveOnSpace) { break }
           }
           case keycodes.ENTER:
           case keycodes.TAB: {
