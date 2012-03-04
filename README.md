@@ -7,6 +7,10 @@ Fills the original input with values, separated by spaces. Triggers a 'change' e
 
 thx eeroan && tkareine
 
+Examples && Demo:
+-----------------
+http://anttis.github.com/beautylist/
+
 Requirements:
 -------------
 
