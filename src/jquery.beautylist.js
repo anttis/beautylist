@@ -5,7 +5,7 @@
  * @author: Antti Salminen (@antti_s)
  * @url: https://github.com/anttis/beautylist
  * @published: 03/01/2012
- * @updated: 03/01/2012
+ * @updated: 03/05/2012
  * @license MIT
  */
 
