@@ -76,12 +76,12 @@
           throw new Error('Can not use options "placeholderText" and "dynamicInputSizing" at the same time.')
         }
         if(pluginSettings.placeholderText && !supportsPlaceholder) { self.polyfillPlaceholder() }
-        if(pluginSettings.dynamicInputSizing) { this.initInputResizing() }
-        if(pluginSettings.inPlaceEdit) { this.initInPlaceEdit() }
-        if($.trim(originalInput.val()) !== '') {
-          this.preFillItems()
-          if(!pluginSettings.placeholderText) { this.resizeInput() }
+        if(pluginSettings.dynamicInputSizing) {
+          this.initInputResizing()
+          this.resizeInput()
         }
+        if(pluginSettings.inPlaceEdit) { this.initInPlaceEdit() }
+        if($.trim(originalInput.val()) !== '') { this.preFillItems() }
 
         return this
       }
