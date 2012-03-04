@@ -251,7 +251,7 @@
           .each(function(i, e) { inputValues.push(itemValue($(e))) })
 
         originalInput
-          .val($.trim(inputValues.join(' ')))
+          .val($.trim(inputValues.join(', ')))
           .trigger('change')
       }
 

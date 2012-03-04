@@ -36,19 +36,19 @@ describe("Beautylist", function() {
     it('creates multiple elements when string with commas entered', function() {
       beautyListInput().val('lol,bal,bar').trigger('keyup')
       expect(beautyListItems().length).toEqual(3)
-      expect(originalInput().val()).toEqual('lol bal bar')
+      expect(originalInput().val()).toEqual('lol, bal, bar')
     })
 
     it('creates multiple elements when string with spaces entered', function() {
       beautyListInput().val('lol bal bar').trigger('keyup')
       expect(beautyListItems().length).toEqual(3)
-      expect(originalInput().val()).toEqual('lol bal bar')
+      expect(originalInput().val()).toEqual('lol, bal, bar')
     })
 
     it('creates multiple elements when string with semicolons entered', function() {
       beautyListInput().val('lol;bal; bar').trigger('keyup')
       expect(beautyListItems().length).toEqual(3)
-      expect(originalInput().val()).toEqual('lol bal bar')
+      expect(originalInput().val()).toEqual('lol, bal, bar')
     })
   })
 
@@ -63,7 +63,7 @@ describe("Beautylist", function() {
       waitsFor(function() { return beautyListItems().length === 2 }, 500)
       runs(function() {
         expect(beautyListItems().length).toEqual(2)
-        expect(originalInput().val()).toEqual('bal bar')
+        expect(originalInput().val()).toEqual('bal, bar')
       })
     })
 
@@ -73,7 +73,7 @@ describe("Beautylist", function() {
       waitsFor(function() { return beautyListItems().length === 3 }, 500)
       runs(function() {
         expect(beautyListItems().length).toEqual(3)
-        expect(originalInput().val()).toEqual('lol bal bar')
+        expect(originalInput().val()).toEqual('lol, bal, bar')
       })
     })
 
@@ -83,7 +83,7 @@ describe("Beautylist", function() {
       waitsFor(function() { return beautyListItems().length === 2 }, 500)
       runs(function() {
         expect(beautyListItems().length).toEqual(2)
-        expect(originalInput().val()).toEqual('lol bal')
+        expect(originalInput().val()).toEqual('lol, bal')
       })
     })
   })
