@@ -52,12 +52,13 @@
         separator: /(?:,|\s|;)/g,
         placeholderText: undefined,
         inPlaceEdit: false,
-        dynamicInputSizing: false,
+        dynamicInputSizing: true,
         saveOnSpace: true,
         allowDuplicates: false,
         validators: []
       }
       var settings = $.extend({}, defaults, options)
+      if(options.placeholderText) { settings.dynamicInputSizing = false }
 
       self = this
 
