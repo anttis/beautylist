@@ -81,7 +81,15 @@
           this.initInputResizing()
           this.resizeInput()
         }
-        if(pluginSettings.inPlaceEdit) { this.initInPlaceEdit() }
+        if(pluginSettings.autoComplete) { this.initAutoComplete(input, pluginSettings.autoComplete) }
+        if(pluginSettings.inPlaceEdit) {
+          if (pluginSettings.autoComplete) {
+            throw new Error('Can not use options "inPlaceEdit" and "autocomplete" at the same time.')
+          }
+          else {
+            this.initInPlaceEdit()
+          }
+        }
         if($.trim(originalInput.val()) !== '') { this.preFillItems() }
 
         return this
@@ -106,8 +114,11 @@
 
         input
           .bind('keyup paste', self.parseItem)
-          .bind('blur', self.addItem)
           .bind('keydown', self.handleKeyEvent)
+
+        if (pluginSettings.autoComplete) {
+          input.bind('blur', self.addItem)
+        }
 
         container.bind('click', function(event) {
           var target = $(event.target)
@@ -125,7 +136,14 @@
           case keycodes.ENTER:
           case keycodes.TAB:
             event.preventDefault()
-            self.addItem()
+            if(!pluginSettings.autoComplete) {
+              self.addItem() }
+            else {
+              if(!$('#ui-active-menuitem').length) {
+                self.addItem()
+                input.autocomplete("close")
+              }
+            }
             break
           case keycodes.BACKSPACE:
           case keycodes.ARROW_LEFT:
@@ -264,6 +282,29 @@
         list.on('click', 'a', function(event) {
           event.preventDefault()
           self.toggleEditmode($(this).closest('.beautylist-item'))
+        })
+      }
+
+      this.initAutoComplete = function(elmt, autocompleteOptions) {
+        elmt.on('focus', function() {
+          var selected = null
+
+          var closeCallback = function(event, ui) {
+            if(selected && selected.item) self.addItem()
+            selected = null
+          }
+          var changeCallback = function(event, ui) {
+            elmt.val(ui.value)
+          }
+          var selectCallback = function(event, ui) {
+            selected = ui
+            elmt.val(ui.item.value)
+          }
+          var options = elmt.hasClass('beautylist-in-place-edit')
+            ? $.extend({ appendTo: container, change: changeCallback, select: selectCallback }, autocompleteOptions)
+            : $.extend({ appendTo: container, change: changeCallback, close: closeCallback, select: selectCallback }, autocompleteOptions)
+
+          elmt.autocomplete(options)
         })
       }
 
