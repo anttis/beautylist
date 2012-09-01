@@ -117,29 +117,26 @@
         self.bindListEvents()
       }
 
+
       this.handleKeyEvent = function(event) {
         switch (event.which) {
-          case keycodes.SPACE:{
+          case keycodes.SPACE:
             if(!settings.saveOnSpace) { break }
-          }
           case keycodes.ENTER:
-          case keycodes.TAB: {
+          case keycodes.TAB:
             event.preventDefault()
             self.addItem()
             break
-          }
           case keycodes.BACKSPACE:
-          case keycodes.ARROW_LEFT: {
+          case keycodes.ARROW_LEFT:
             if (!input.val()) {
               event.preventDefault()
               event.stopPropagation()
               self.focusToLastElement()
             }
             break
-          }
-          default: {
+          default:
             break
-          }
         }
       }
 
@@ -156,24 +153,22 @@
             var element = $(this)
             switch (event.which) {
               case keycodes.BACKSPACE:
-              case keycodes.DELETE: {
+              case keycodes.DELETE:
                 var nextItem = self.getNextItem(element)
                 event.preventDefault()
                 event.stopPropagation()
                 self.removeItem(element.closest('.beautylist-item'), function() { nextItem.focus() })
                 break
-              }
               case keycodes.ARROW_LEFT:
               case keycodes.ARROW_UP:
               case keycodes.ARROW_RIGHT:
-              case keycodes.ARROW_DOWN: {
+              case keycodes.ARROW_DOWN:
                 focusToItem = (event.which === keycodes.ARROW_UP || event.which === keycodes.ARROW_LEFT)
                   ? self.getPreviousItem(element)
                   : self.getNextItem(element)
                 focusToItem.focus()
                 event.preventDefault()
                 break
-              }
             }
           })
       }
