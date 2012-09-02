@@ -1,9 +1,6 @@
-body { font-family: sans-serif; padding-bottom: 200px;}
+body { font-family: sans-serif; width: 640px; margin:  0 auto; padding-bottom: 200px;}
 pre { padding:  10px; background-color: #f0f0f0; width: 400px;}
-#lol-1,
-#lol-2,
-#lol-3,
-#lol-4 {
+.example {
   width: 400px;
   margin-bottom: 20px;
 }

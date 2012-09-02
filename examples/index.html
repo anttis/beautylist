@@ -10,58 +10,66 @@
 </head>
 
 <body>
-<h1>Examples</h1>
 
+<a href="https://github.com/anttis/beautylist"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+<h1>Beautylist Examples</h1>
+<p>Transforms a text input (or a textarea) into a nicer-looking input. For more info check out <a href="https://github.com/anttis/beautylist">https://github.com/anttis/beautylist</a>.</p>
+<h2>Basic</h2>
 <pre>
   $('#input-1').beautyList({
-    allowDuplicates: false,
-    dynamicInputSizing: true,
-    inPlaceEdit: true,
-    saveOnSpace: true,
+    dynamicInputSizing: true
+  })
+</pre>
+
+<div class="example">
+  <input id="input-1"  type="text" value="foo bar baz"/>
+</div>
+
+<h2>With a validator</h2>
+<pre>
+  $('#input-2').beautyList({
     validators: [
       function(isA) { return isA === 'a'}
     ]
   })
 </pre>
-<div id="lol-1">
-  <input id="input-1"  type="text"/>
-</div>
-
-<pre>
-  $('#input-2').beautyList({
-    allowDuplicates: true,
-    dynamicInputSizing: false,
-    inPlaceEdit: true,
-    separator: /(?:,)/g,
-    saveOnSpace: false,
-    placeholderText: 'Input here'
-  })
-</pre>
-<div id="lol-2">
+<div class="example">
   <input id="input-2"  type="text"/>
 </div>
 
+<h2>Allowing spaces</h2>
 <pre>
   $('#input-3').beautyList({
-    dynamicInputSizing: true
+    separator: /(?:,)/g,
+    saveOnSpace: false,
   })
 </pre>
-
-<div id="lol-3">
-  <input id="input-3"  type="text" value="foo bar baz"/>
+<div class="example">
+  <input id="input-3" type="text"/>
 </div>
 
+<h2>With a placeholder text</h2>
 <pre>
   $('#input-4').beautyList({
-    autocomplete: {
-      source: AUTOCOMPLETE_SOURCE
-    }
+    placeholderText: 'Input here'
   })
 </pre>
-
-<div id="lol-4">
-  <input id="input-4"  type="text" value=""/>
+<div class="example">
+  <input id="input-4" type="text"/>
 </div>
+
+<h2>With autocompletion</h2>
+<pre>
+  $('#input-5').beautyList({
+    autocomplete: {source: AUTOCOMPLETE_SOURCE}
+  })
+</pre>
+<div class="example">
+  <input id="input-5" type="text"/>
+</div>
+
+<h2>Other...</h2>
+<p><a href="http://anttis.github.com/beautylist/test/specrunner.html">Jasmine tests</a></p>
 
 <script type="text/javascript">
   $('document').ready(function(){
@@ -90,28 +98,24 @@
       "Scheme"
     ];
 
-    $('#input-1').beautyList({
-      allowDuplicates: false,
-      dynamicInputSizing: true,
-      inPlaceEdit: true,
-      saveOnSpace: true,
+    $('#input-1').beautyList({ dynamicInputSizing: true })
+
+
+    $('#input-2').beautyList({
       validators: [
         function(isA) { return isA === 'a'}
       ]
     })
 
-    $('#input-2').beautyList({
-      allowDuplicates: true,
-      dynamicInputSizing: false,
-      inPlaceEdit: true,
+    $('#input-3').beautyList({
       separator: /(?:,)/g,
       saveOnSpace: false,
-      placeholderText: 'Input here'
     })
 
-    $('#input-3').beautyList({ dynamicInputSizing: true })
+    $('#input-4').beautyList({ placeholderText: 'Input here' })
 
-    $('#input-4').beautyList({ saveOnSpace: false, autocomplete: {source: AUTOCOMPLETE_SOURCE} })
+    $('#input-5').beautyList({ saveOnSpace: false, autocomplete: {source: AUTOCOMPLETE_SOURCE} })
+
   })
 </script>
 </body>
