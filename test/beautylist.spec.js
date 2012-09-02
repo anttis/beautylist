@@ -162,8 +162,9 @@ describe("Beautylist with options", function() {
   })
 
   describe('using autocomplete', function() {
+    var autocompleteList = ['aaa', 'bbb', 'ccc']
+
     describe('creating elements', function() {
-      var autocompleteList = ['autocomplete1', 'autocomplete2', 'autocomplete3']
       beforeEach(function() {
         createBeautyList({autoComplete: {source: autocompleteList}})
       })
@@ -171,15 +172,39 @@ describe("Beautylist with options", function() {
     })
 
     describe('deleting elements', function() {
-      var autocompleteList = ['autocomplete1', 'autocomplete2', 'autocomplete3']
       beforeEach(function() {
         createBeautyList({autoComplete: {source: autocompleteList}})
         beautyListInput().val('lol,bal,bar').trigger('keyup')
       })
       testElementDeletion()
     })
-  })
 
+    describe('when displaying autocompletion list', function() {
+      beforeEach(function() {
+        createBeautyList({autoComplete: {source: autocompleteList}})
+        beautyListInput().val('a').focus().trigger('keydown')
+      })
+
+      it('shows relevant terms', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 1
+        })
+        runs(function() {
+        expect($('.ui-menu-item:first').text()).toEqual('aaa')
+        })
+      })
+
+      it('fills in selected value on click', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 1
+        })
+        runs(function() {
+          $('.ui-menu-item:first a').trigger('mouseover').click()
+          expect(originalInput().val()).toEqual('aaa')
+        })
+      })
+    })
+  })
 })
 
 describe('input behavior', function() {
