@@ -81,9 +81,9 @@
           this.initInputResizing()
           this.resizeInput()
         }
-        if(pluginSettings.autoComplete) { this.initAutoComplete(input, pluginSettings.autoComplete) }
+        if(pluginSettings.autocomplete) { this.initAutocomplete(input, pluginSettings.autocomplete) }
         if(pluginSettings.inPlaceEdit) {
-          if (pluginSettings.autoComplete) {
+          if (pluginSettings.autocomplete) {
             throw new Error('Can not use options "inPlaceEdit" and "autocomplete" at the same time.')
           }
           else {
@@ -117,7 +117,7 @@
           .bind('keydown', self.handleKeyEvent)
 
         input.bind('blur', function() {
-          if (!pluginSettings.autoComplete) {
+          if (!pluginSettings.autocomplete) {
             self.addItem()
           } else {
             // when using autocomplete, add new item only if one is selected in the dropdown
@@ -143,7 +143,7 @@
           case keycodes.ENTER:
           case keycodes.TAB:
             event.preventDefault()
-            if(!pluginSettings.autoComplete) {
+            if(!pluginSettings.autocomplete) {
               self.addItem() }
             else {
               // when using autocomplete, add new item if one is selected in the dropdown
@@ -293,7 +293,7 @@
         })
       }
 
-      this.initAutoComplete = function(elmt, autocompleteOptions) {
+      this.initAutocomplete = function(elmt, autocompleteOptions) {
         elmt.on('focus', function() {
           var selected = null
 

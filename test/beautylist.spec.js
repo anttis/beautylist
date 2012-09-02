@@ -166,14 +166,14 @@ describe("Beautylist with options", function() {
 
     describe('creating elements', function() {
       beforeEach(function() {
-        createBeautyList({autoComplete: {source: autocompleteList}})
+        createBeautyList({autocomplete: {source: autocompleteList}})
       })
       testElementCreation()
     })
 
     describe('deleting elements', function() {
       beforeEach(function() {
-        createBeautyList({autoComplete: {source: autocompleteList}})
+        createBeautyList({autocomplete: {source: autocompleteList}})
         beautyListInput().val('lol,bal,bar').trigger('keyup')
       })
       testElementDeletion()
@@ -181,7 +181,7 @@ describe("Beautylist with options", function() {
 
     describe('when displaying autocompletion list', function() {
       beforeEach(function() {
-        createBeautyList({autoComplete: {source: autocompleteList}})
+        createBeautyList({autocomplete: {source: autocompleteList}})
         beautyListInput().val('a').focus().trigger('keydown')
       })
 
