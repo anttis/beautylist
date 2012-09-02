@@ -116,9 +116,16 @@
           .bind('keyup paste', self.parseItem)
           .bind('keydown', self.handleKeyEvent)
 
-        if (pluginSettings.autoComplete) {
-          input.bind('blur', self.addItem)
-        }
+        input.bind('blur', function() {
+          if (!pluginSettings.autoComplete) {
+            self.addItem()
+          } else {
+            // when using autocomplete, add new item only if one is selected in the dropdown
+            if(!$('#ui-active-menuitem').length) {
+              self.addItem()
+            }
+          }
+        })
 
         container.bind('click', function(event) {
           var target = $(event.target)
