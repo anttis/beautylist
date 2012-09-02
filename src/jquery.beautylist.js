@@ -146,6 +146,7 @@
             if(!pluginSettings.autoComplete) {
               self.addItem() }
             else {
+              // when using autocomplete, add new item if one is selected in the dropdown
               if(!$('#ui-active-menuitem').length) {
                 self.addItem()
                 input.autocomplete("close")
