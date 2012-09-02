@@ -162,7 +162,7 @@ describe("Beautylist with options", function() {
   })
 
   describe('using autocomplete', function() {
-    var autocompleteList = ['aaa', 'bbb', 'ccc']
+    var autocompleteList = ['aaa', 'bbb', 'ccc', 'aaa2', 'aaa3']
 
     describe('creating elements', function() {
       beforeEach(function() {
@@ -187,7 +187,7 @@ describe("Beautylist with options", function() {
 
       it('shows relevant terms', function() {
         waitsFor(function() {
-          return $('.ui-menu-item:visible').length === 1
+          return $('.ui-menu-item:visible').length === 3
         })
         runs(function() {
         expect($('.ui-menu-item:first').text()).toEqual('aaa')
@@ -196,11 +196,43 @@ describe("Beautylist with options", function() {
 
       it('fills in selected value on click', function() {
         waitsFor(function() {
-          return $('.ui-menu-item:visible').length === 1
+          return $('.ui-menu-item:visible').length === 3
         })
         runs(function() {
           $('.ui-menu-item:first a').trigger('mouseover').click()
           expect(originalInput().val()).toEqual('aaa')
+        })
+      })
+
+      it('fills in selected value when pressing TAB', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 3
+        })
+        runs(function() {
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow
+          expect(beautyListInput().val()).toEqual('aaa')
+          expect($('.ui-menu-item').eq(0).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow again
+          expect(beautyListInput().val()).toEqual('aaa2')
+          expect($('.ui-menu-item').eq(1).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 9 }) // press tab
+          expect(originalInput().val()).toEqual('aaa2')
+        })
+      })
+
+      it('fills in selected value when pressing ENTER', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 3
+        })
+        runs(function() {
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow
+          expect(beautyListInput().val()).toEqual('aaa')
+          expect($('.ui-menu-item').eq(0).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow again
+          expect(beautyListInput().val()).toEqual('aaa2')
+          expect($('.ui-menu-item').eq(1).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 13 }) // press tab
+          expect(originalInput().val()).toEqual('aaa2')
         })
       })
     })
