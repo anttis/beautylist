@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>beautylist</title>
-  <link rel="stylesheet" type="text/css" href="src/jquery.beautylist.css">
-  <link rel="stylesheet" type="text/css" href="examples/examples.css">
+  <link rel="stylesheet" type="text/css" href="../src/jquery.beautylist.css">
+  <link rel="stylesheet" type="text/css" href="examples.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="src/jquery.beautylist.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../src/jquery.beautylist.js"></script>
 </head>
 
 <body>
+
 <a href="https://github.com/anttis/beautylist"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 <h1>Beautylist Examples</h1>
 <p>Transforms a text input (or a textarea) into a nicer-looking input. For more info check out <a href="https://github.com/anttis/beautylist">https://github.com/anttis/beautylist</a>.</p>
@@ -56,11 +58,46 @@
   <input id="input-4" type="text"/>
 </div>
 
+<h2>With autocompletion</h2>
+<pre>
+  $('#input-5').beautyList({
+    autocomplete: {source: AUTOCOMPLETE_SOURCE}
+  })
+</pre>
+<div class="example">
+  <input id="input-5" type="text"/>
+</div>
+
 <h2>Other...</h2>
 <p><a href="http://anttis.github.com/beautylist/test/specrunner.html">Jasmine tests</a></p>
 
 <script type="text/javascript">
   $('document').ready(function(){
+    var AUTOCOMPLETE_SOURCE = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+
     $('#input-1').beautyList({ dynamicInputSizing: true })
 
 
@@ -76,6 +113,9 @@
     })
 
     $('#input-4').beautyList({ placeholderText: 'Input here' })
+
+    $('#input-5').beautyList({ saveOnSpace: false, autocomplete: {source: AUTOCOMPLETE_SOURCE} })
+
   })
 </script>
 </body>
