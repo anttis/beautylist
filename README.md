@@ -15,7 +15,7 @@ Requirements:
 -------------
 
 + jQuery v.1.7+
-[+ jQuery UI 1.8.x if using autocompletion]
++ (+jQuery UI 1.8.x if using autocompletion)
 
 Tested w/:
 --------------
