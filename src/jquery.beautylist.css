@@ -151,3 +151,159 @@
 .beautylist-in-place-edit:focus {
   outline: none;
 }
+
+/* jQuery UI theme for beautylist */
+
+/*!
+ * jQuery UI CSS Framework 1.8.23
+ *
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ */
+
+/* Layout helpers
+----------------------------------*/
+.beautylist .ui-helper-hidden { display: none; }
+.beautylist .ui-helper-hidden-accessible { position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
+.beautylist .ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.beautylist .ui-helper-clearfix:before, .beautylist .ui-helper-clearfix:after { content: ""; display: table; }
+.beautylist .ui-helper-clearfix:after { clear: both; }
+.beautylist .ui-helper-clearfix { zoom: 1; }
+.beautylist .ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+ .beautylist .ui-state-disabled { cursor: default !important; }
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.beautylist .ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.beautylist .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+
+/*!
+ * jQuery UI CSS Framework 1.8.23
+ *
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=sans-serif&fwDefault=normal&fsDefault=13px&cornerRadius=4px&bgColorHeader=cccccc&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=75&borderColorHeader=aaaaaa&fcHeader=222222&iconColorHeader=222222&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=e6e6e6&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=75&borderColorDefault=d3d3d3&fcDefault=555555&iconColorDefault=888888&bgColorHover=e6e6e6&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=75&borderColorHover=d3d3d3&fcHover=212121&iconColorHover=454545&bgColorActive=ffffff&bgTextureActive=02_glass.png&bgImgOpacityActive=65&borderColorActive=aaaaaa&fcActive=212121&iconColorActive=454545&bgColorHighlight=fbf9ee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=fcefa1&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=05_inset_soft.png&bgImgOpacityError=95&borderColorError=cd0a0a&fcError=cd0a0a&iconColorError=cd0a0a&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+ */
+
+
+/* Component containers
+----------------------------------*/
+.beautylist .ui-widget { font-family: sans-serif; font-size: 13px; }
+.beautylist .ui-widget .ui-widget { font-size: 1em; }
+.beautylist .ui-widget input, .beautylist .ui-widget select, .beautylist .ui-widget textarea, .beautylist .ui-widget button { font-family: sans-serif; font-size: 1em; }
+.beautylist .ui-widget-content { border: 1px solid #cccccc; background: #ffffff; color: #222222; }
+.beautylist .ui-widget-content a { color: #222222; }
+.beautylist .ui-widget-header { border: 1px solid #cccccc; background: #cccccc; color: #222222; font-weight: bold; }
+.beautylist .ui-widget-header a { color: #222222; }
+
+/* Interaction states
+----------------------------------*/
+.beautylist .ui-state-default, .beautylist .ui-widget-content .ui-state-default, .beautylist .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3; background: #e6e6e6; font-weight: normal; color: #555555; }
+.beautylist .ui-state-default a, .beautylist .ui-state-default a:link, .beautylist .ui-state-default a:visited { color: #555555; text-decoration: none; }
+.beautylist .ui-state-hover, .beautylist .ui-widget-content .ui-state-hover, .beautylist .ui-widget-header .ui-state-hover, .beautylist .ui-state-focus, .beautylist .ui-widget-content .ui-state-focus, .beautylist .ui-widget-header .ui-state-focus { border: 1px solid #d3d3d3;   background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e6e6e6));
+   background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+   background-image:    -moz-linear-gradient(top, #ffffff, #e6e6e6);
+   background-image:     -ms-linear-gradient(top, #ffffff, #e6e6e6);
+   background-image:      -o-linear-gradient(top, #ffffff, #e6e6e6);
+   background-image:         linear-gradient(to bottom, #ffffff, #e6e6e6); font-weight: normal; color: #212121; }
+.beautylist .ui-state-hover a, .beautylist .ui-state-hover a:hover { color: #212121; text-decoration: none; }
+.beautylist .ui-state-active, .beautylist .ui-widget-content .ui-state-active, .beautylist .ui-widget-header .ui-state-active { border: 1px solid #cccccc; background: #ffffff; font-weight: normal; color: #212121; }
+.beautylist .ui-state-active a, .beautylist .ui-state-active a:link, .beautylist .ui-state-active a:visited { color: #212121; text-decoration: none; }
+.beautylist .ui-widget :active { outline: none; }
+
+/* Interaction Cues
+----------------------------------*/
+.beautylist .ui-state-highlight, .beautylist .ui-widget-content .ui-state-highlight, .beautylist .ui-widget-header .ui-state-highlight  {border: 1px solid #fcefa1; background: #fbf9ee; color: #363636; }
+.beautylist .ui-state-highlight a, .beautylist .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #363636; }
+.beautylist .ui-state-error, .beautylist .ui-widget-content .ui-state-error, .beautylist .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec; color: #cd0a0a; }
+.beautylist .ui-state-error a, .beautylist .ui-widget-content .ui-state-error a, .beautylist .ui-widget-header .ui-state-error a { color: #cd0a0a; }
+.beautylist .ui-state-error-text, .beautylist .ui-widget-content .ui-state-error-text, .beautylist .ui-widget-header .ui-state-error-text { color: #cd0a0a; }
+.beautylist .ui-priority-primary, .beautylist .ui-widget-content .ui-priority-primary, .beautylist .ui-widget-header .ui-priority-primary { font-weight: bold; }
+.beautylist .ui-priority-secondary, .beautylist .ui-widget-content .ui-priority-secondary, .beautylist .ui-widget-header .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+.beautylist .ui-state-disabled, .beautylist .ui-widget-content .ui-state-disabled, .beautylist .ui-widget-header .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.beautylist .ui-corner-all, .beautylist .ui-corner-top, .beautylist .ui-corner-left, .beautylist .ui-corner-tl { -moz-border-radius-topleft: 2px; -webkit-border-top-left-radius: 2px; -khtml-border-top-left-radius: 2px; border-top-left-radius: 2px; }
+.beautylist .ui-corner-all, .beautylist .ui-corner-top, .beautylist .ui-corner-right, .beautylist .ui-corner-tr { -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px; -khtml-border-top-right-radius: 2px; border-top-right-radius: 2px; }
+.beautylist .ui-corner-all, .beautylist .ui-corner-bottom, .beautylist .ui-corner-left, .beautylist .ui-corner-bl { -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px; -khtml-border-bottom-left-radius: 2px; border-bottom-left-radius: 2px; }
+.beautylist .ui-corner-all, .beautylist .ui-corner-bottom, .beautylist .ui-corner-right, .beautylist .ui-corner-br { -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px; -khtml-border-bottom-right-radius: 2px; border-bottom-right-radius: 2px; }
+
+/* Overlays */
+.beautylist .ui-widget-overlay { background: #aaaaaa; opacity: .30;filter:Alpha(Opacity=30); }
+.beautylist .ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -khtml-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }/*!
+ * jQuery UI Autocomplete 1.8.23
+ *
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Autocomplete#theming
+ */
+.beautylist .ui-autocomplete { position: absolute; cursor: default; }
+
+/* workarounds */
+* html .beautylist .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
+/*
+ * jQuery UI Menu 1.8.23
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Menu#theming
+ */
+.beautylist .ui-menu {
+	list-style:none;
+	padding: 4px;
+	margin: 0;
+	display:block;
+	float: left;
+}
+.beautylist .ui-menu .ui-menu {
+	margin-top: -3px;
+}
+.beautylist .ui-menu .ui-menu-item {
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.beautylist .ui-menu .ui-menu-item a {
+	text-decoration:none;
+	display:block;
+	padding:.2em .4em;
+	line-height:1.5;
+	zoom:1;
+}
+.beautylist .ui-menu .ui-menu-item a.ui-state-hover,
+.beautylist .ui-menu .ui-menu-item a.ui-state-active {
+	font-weight: normal;
+	margin: -1px;
+}

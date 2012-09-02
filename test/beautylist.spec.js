@@ -13,79 +13,14 @@ describe("Beautylist", function() {
   })
 
   describe("creates list elements", function() {
-
-    it('does not create element when no comma entered', function() {
-      beautyListInput().val('lol').trigger('keyup')
-      expect(beautyListItems().length).toEqual(0)
-      expect(originalInput().val()).toEqual('')
-    })
-
-    it('creates an element on blur', function() {
-      beautyListInput().val('lol').trigger('blur')
-      expect(beautyListItems().length).toEqual(1)
-      expect($('.beautylist .beautylist-item:first').data('beautylist-value')).toEqual('lol')
-      expect(originalInput().val()).toEqual('lol')
-    })
-
-    it('does not create an element on blur when no text entered', function() {
-      beautyListInput().val('').trigger('blur')
-      expect(beautyListItems().length).toEqual(0)
-      expect(originalInput().val()).toEqual('')
-    })
-
-    it('creates multiple elements when string with commas entered', function() {
-      beautyListInput().val('lol,bal,bar').trigger('keyup')
-      expect(beautyListItems().length).toEqual(3)
-      expect(originalInput().val()).toEqual('lol, bal, bar')
-    })
-
-    it('creates multiple elements when string with spaces entered', function() {
-      beautyListInput().val('lol bal bar').trigger('keyup')
-      expect(beautyListItems().length).toEqual(3)
-      expect(originalInput().val()).toEqual('lol, bal, bar')
-    })
-
-    it('creates multiple elements when string with semicolons entered', function() {
-      beautyListInput().val('lol;bal; bar').trigger('keyup')
-      expect(beautyListItems().length).toEqual(3)
-      expect(originalInput().val()).toEqual('lol, bal, bar')
-    })
+    testElementCreation()
   })
 
   describe('deleting list elements', function(){
     beforeEach(function() {
       beautyListInput().val('lol,bal,bar').trigger('keyup')
     })
-
-    it('deletes an item when clicked on delete icon', function() {
-      beautyListItems().eq(0).find('.beautylist-delete-item').trigger('click')
-
-      waitsFor(function() { return beautyListItems().length === 2 }, 500)
-      runs(function() {
-        expect(beautyListItems().length).toEqual(2)
-        expect(originalInput().val()).toEqual('bal, bar')
-      })
-    })
-
-    it('does not delete an item when pressing backspace on input with text', function() {
-      beautyListInput().val('lol').trigger({type: 'keydown', which : 8 })
-
-      waitsFor(function() { return beautyListItems().length === 3 }, 500)
-      runs(function() {
-        expect(beautyListItems().length).toEqual(3)
-        expect(originalInput().val()).toEqual('lol, bal, bar')
-      })
-    })
-
-    it('deletes a focused item on backspace', function() {
-      beautyListInput().val('').trigger({type: 'keydown', which : 8 })
-      beautyListItems().last().find('a:focus').trigger({type: 'keydown', which : 8 })
-      waitsFor(function() { return beautyListItems().length === 2 }, 500)
-      runs(function() {
-        expect(beautyListItems().length).toEqual(2)
-        expect(originalInput().val()).toEqual('lol, bal')
-      })
-    })
+    testElementDeletion()
   })
 
 
@@ -225,6 +160,83 @@ describe("Beautylist with options", function() {
       expect($('.beautylist-item a:focus').length).toEqual(1)
     })
   })
+
+  describe('using autocomplete', function() {
+    var autocompleteList = ['aaa', 'bbb', 'ccc', 'aaa2', 'aaa3']
+
+    describe('creating elements', function() {
+      beforeEach(function() {
+        createBeautyList({autocomplete: {source: autocompleteList}})
+      })
+      testElementCreation()
+    })
+
+    describe('deleting elements', function() {
+      beforeEach(function() {
+        createBeautyList({autocomplete: {source: autocompleteList}})
+        beautyListInput().val('lol,bal,bar').trigger('keyup')
+      })
+      testElementDeletion()
+    })
+
+    describe('when displaying autocompletion list', function() {
+      beforeEach(function() {
+        createBeautyList({autocomplete: {source: autocompleteList}})
+        beautyListInput().val('a').focus().trigger('keydown')
+      })
+
+      it('shows relevant terms', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 3
+        })
+        runs(function() {
+        expect($('.ui-menu-item:first').text()).toEqual('aaa')
+        })
+      })
+
+      it('fills in selected value on click', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 3
+        })
+        runs(function() {
+          $('.ui-menu-item:first a').trigger('mouseover').click()
+          expect(originalInput().val()).toEqual('aaa')
+        })
+      })
+
+      it('fills in selected value when pressing TAB', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 3
+        })
+        runs(function() {
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow
+          expect(beautyListInput().val()).toEqual('aaa')
+          expect($('.ui-menu-item').eq(0).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow again
+          expect(beautyListInput().val()).toEqual('aaa2')
+          expect($('.ui-menu-item').eq(1).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 9 }) // press tab
+          expect(originalInput().val()).toEqual('aaa2')
+        })
+      })
+
+      it('fills in selected value when pressing ENTER', function() {
+        waitsFor(function() {
+          return $('.ui-menu-item:visible').length === 3
+        })
+        runs(function() {
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow
+          expect(beautyListInput().val()).toEqual('aaa')
+          expect($('.ui-menu-item').eq(0).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 40 }) // press down arrow again
+          expect(beautyListInput().val()).toEqual('aaa2')
+          expect($('.ui-menu-item').eq(1).find('a')).toHaveClass('ui-state-hover')
+          beautyListInput().simulate('keydown', {keyCode: 13 }) // press tab
+          expect(originalInput().val()).toEqual('aaa2')
+        })
+      })
+    })
+  })
 })
 
 describe('input behavior', function() {
@@ -300,8 +312,80 @@ function initBeautyList(params) {
 function stubHtml() {
   $('#test-area').append('<div id="wrapper" style="width:400px;"><input id="element-1" type="text" /></div>')
 }
+
 function resetHtml(){ $('#element-1, .beautylist').remove() }
 function beautyListInput() { return $('.beautylist-input') }
 function originalInput() { return $('#element-1') }
 function beautyListContainer() { return $('.beautylist ul') }
 function beautyListItems() { return $('.beautylist .beautylist-item') }
+
+function testElementCreation() {
+  it('does not create element when no comma entered', function() {
+    beautyListInput().val('lol').trigger('keyup')
+    expect(beautyListItems().length).toEqual(0)
+    expect(originalInput().val()).toEqual('')
+  })
+
+  it('creates an element on blur', function() {
+    beautyListInput().val('lol').trigger('blur')
+    expect(beautyListItems().length).toEqual(1)
+    expect($('.beautylist .beautylist-item:first').data('beautylist-value')).toEqual('lol')
+    expect(originalInput().val()).toEqual('lol')
+  })
+
+  it('does not create an element on blur when no text entered', function() {
+    beautyListInput().val('').trigger('blur')
+    expect(beautyListItems().length).toEqual(0)
+    expect(originalInput().val()).toEqual('')
+  })
+
+  it('creates multiple elements when string with commas entered', function() {
+    beautyListInput().val('lol,bal,bar').trigger('keyup')
+    expect(beautyListItems().length).toEqual(3)
+    expect(originalInput().val()).toEqual('lol, bal, bar')
+  })
+
+  it('creates multiple elements when string with spaces entered', function() {
+    beautyListInput().val('lol bal bar').trigger('keyup')
+    expect(beautyListItems().length).toEqual(3)
+    expect(originalInput().val()).toEqual('lol, bal, bar')
+  })
+
+  it('creates multiple elements when string with semicolons entered', function() {
+    beautyListInput().val('lol;bal; bar').trigger('keyup')
+    expect(beautyListItems().length).toEqual(3)
+    expect(originalInput().val()).toEqual('lol, bal, bar')
+  })
+}
+
+function testElementDeletion() {
+  it('deletes an item when clicked on delete icon', function() {
+    beautyListItems().eq(0).find('.beautylist-delete-item').trigger('click')
+
+    waitsFor(function() { return beautyListItems().length === 2 }, 500)
+    runs(function() {
+      expect(beautyListItems().length).toEqual(2)
+      expect(originalInput().val()).toEqual('bal, bar')
+    })
+  })
+
+  it('does not delete an item when pressing backspace on input with text', function() {
+    beautyListInput().val('lol').trigger({type: 'keydown', which : 8 })
+
+    waitsFor(function() { return beautyListItems().length === 3 }, 500)
+    runs(function() {
+      expect(beautyListItems().length).toEqual(3)
+      expect(originalInput().val()).toEqual('lol, bal, bar')
+    })
+  })
+
+  it('deletes a focused item on backspace', function() {
+    beautyListInput().val('').trigger({type: 'keydown', keyCode: 8, which : 8 })
+    beautyListItems().last().find('a:focus').trigger({type: 'keydown', keyCode: 8, which : 8 })
+    waitsFor(function() { return beautyListItems().length === 2 }, 5000)
+    runs(function() {
+      expect(beautyListItems().length).toEqual(2)
+      expect(originalInput().val()).toEqual('lol, bal')
+    })
+  })
+}

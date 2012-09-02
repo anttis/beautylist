@@ -15,6 +15,7 @@ Requirements:
 -------------
 
 + jQuery v.1.7+
++ (+jQuery UI 1.8.x if using autocompletion)
 
 Tested w/:
 --------------
@@ -35,6 +36,7 @@ $('#some-element').beautyList({
   // Whether or not to dynamically change the width of the BeautyList input field
   dynamicInputSizing: true,
   // Whether or not to enable in-place-editing of list items
+  // (not possible to use with autocomplete at the moment)
   inPlaceEdit: false,
   // Whether or not duplicate items should be marked as invalid
   allowDuplicates: false,
@@ -44,6 +46,9 @@ $('#some-element').beautyList({
   validators: [],
   // Placeholder text for input.
   placeholderText: undefined
+  // Autocompletion, this requires the jquery ui autocomplete plugin.
+  // (not possible to use with in-place-edit at the moment)
+  autocomplete: {}
 })
 ```
 

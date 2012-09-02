@@ -81,7 +81,15 @@
           this.initInputResizing()
           this.resizeInput()
         }
-        if(pluginSettings.inPlaceEdit) { this.initInPlaceEdit() }
+        if(pluginSettings.autocomplete) { this.initAutocomplete(input, pluginSettings.autocomplete) }
+        if(pluginSettings.inPlaceEdit) {
+          if (pluginSettings.autocomplete) {
+            throw new Error('Can not use options "inPlaceEdit" and "autocomplete" at the same time.')
+          }
+          else {
+            this.initInPlaceEdit()
+          }
+        }
         if($.trim(originalInput.val()) !== '') { this.preFillItems() }
 
         return this
@@ -106,8 +114,18 @@
 
         input
           .bind('keyup paste', self.parseItem)
-          .bind('blur', self.addItem)
           .bind('keydown', self.handleKeyEvent)
+
+        input.bind('blur', function() {
+          if (!pluginSettings.autocomplete) {
+            self.addItem()
+          } else {
+            // when using autocomplete, add new item only if one is selected in the dropdown
+            if(!container.find('#ui-active-menuitem').length) {
+              self.addItem()
+            }
+          }
+        })
 
         container.bind('click', function(event) {
           var target = $(event.target)
@@ -125,7 +143,15 @@
           case keycodes.ENTER:
           case keycodes.TAB:
             event.preventDefault()
-            self.addItem()
+            if(!pluginSettings.autocomplete) {
+              self.addItem() }
+            else {
+              // when using autocomplete, add new item if one is selected in the dropdown
+              if(!container.find('#ui-active-menuitem').length) {
+                self.addItem()
+                input.autocomplete("close")
+              }
+            }
             break
           case keycodes.BACKSPACE:
           case keycodes.ARROW_LEFT:
@@ -266,6 +292,29 @@
           self.toggleEditmode($(this).closest('.beautylist-item'))
         })
       }
+
+      this.initAutocomplete = function(elmt, autocompleteOptions) {
+        elmt.on('focus', function() {
+          var selected = null
+
+          var closeCallback = function(event, ui) {
+            if(selected && selected.item) self.addItem()
+            selected = null
+            if(autocompleteOptions.close) { autocompleteOptions.close(event, ui) }
+          }
+          var changeCallback = function(event, ui) {
+            elmt.val(ui.value)
+            if(autocompleteOptions.change) { autocompleteOptions.change(event, ui) }
+          }
+          var selectCallback = function(event, ui) {
+            selected = ui
+            elmt.val(ui.item.value)
+            if(autocompleteOptions.select) { autocompleteOptions.select(event, ui) }
+          }
+          var options = $.extend({}, autocompleteOptions, {appendTo:container, change: changeCallback, close: closeCallback, select: selectCallback });
+          elmt.autocomplete(options)
+      })
+    }
 
       this.toggleEditmode = function(listItem) {
         var oldValue = itemValue(listItem)
