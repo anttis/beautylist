@@ -300,13 +300,16 @@
           var closeCallback = function(event, ui) {
             if(selected && selected.item) self.addItem()
             selected = null
+            if(autocompleteOptions.close) { autocompleteOptions.close(event, ui) }
           }
           var changeCallback = function(event, ui) {
             elmt.val(ui.value)
+            if(autocompleteOptions.change) { autocompleteOptions.change(event, ui) }
           }
           var selectCallback = function(event, ui) {
             selected = ui
             elmt.val(ui.item.value)
+            if(autocompleteOptions.select) { autocompleteOptions.select(event, ui) }
           }
           var options = elmt.hasClass('beautylist-in-place-edit')
             ? $.extend({ appendTo: container, change: changeCallback, select: selectCallback }, autocompleteOptions)
