@@ -5,11 +5,13 @@
   <link rel="stylesheet" type="text/css" href="../src/jquery.beautylist.css">
   <link rel="stylesheet" type="text/css" href="examples.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
   <script type="text/javascript" src="../src/jquery.beautylist.js"></script>
 </head>
 
 <body>
 <h1>Examples</h1>
+
 <pre>
   $('#input-1').beautyList({
     allowDuplicates: false,
@@ -48,8 +50,46 @@
 <div id="lol-3">
   <input id="input-3"  type="text" value="foo bar baz"/>
 </div>
+
+<pre>
+  $('#input-4').beautyList({
+    autoComplete: {
+      source: AUTOCOMPLETE_SOURCE
+    }
+  })
+</pre>
+
+<div id="lol-4">
+  <input id="input-4"  type="text" value=""/>
+</div>
+
 <script type="text/javascript">
   $('document').ready(function(){
+    var AUTOCOMPLETE_SOURCE = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+
     $('#input-1').beautyList({
       allowDuplicates: false,
       dynamicInputSizing: true,
@@ -70,6 +110,8 @@
     })
 
     $('#input-3').beautyList({ dynamicInputSizing: true })
+
+    $('#input-4').beautyList({ saveOnSpace: false, autoComplete: {source: AUTOCOMPLETE_SOURCE} })
   })
 </script>
 </body>
