@@ -15,7 +15,6 @@ Requirements:
 -------------
 
 + jQuery v.1.7+
-+ underscore
 
 Tested w/:
 --------------
