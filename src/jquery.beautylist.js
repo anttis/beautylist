@@ -311,13 +311,10 @@
             elmt.val(ui.item.value)
             if(autocompleteOptions.select) { autocompleteOptions.select(event, ui) }
           }
-          var options = elmt.hasClass('beautylist-in-place-edit')
-            ? $.extend({ appendTo: container, change: changeCallback, select: selectCallback }, autocompleteOptions)
-            : $.extend({ appendTo: container, change: changeCallback, close: closeCallback, select: selectCallback }, autocompleteOptions)
-
+          var options = $.extend({}, autocompleteOptions, {appendTo:container, change: changeCallback, close: closeCallback, select: selectCallback });
           elmt.autocomplete(options)
-        })
-      }
+      })
+    }
 
       this.toggleEditmode = function(listItem) {
         var oldValue = itemValue(listItem)
