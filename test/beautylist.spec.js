@@ -160,6 +160,26 @@ describe("Beautylist with options", function() {
       expect($('.beautylist-item a:focus').length).toEqual(1)
     })
   })
+
+  describe('using autocomplete', function() {
+    describe('creating elements', function() {
+      var autocompleteList = ['autocomplete1', 'autocomplete2', 'autocomplete3']
+      beforeEach(function() {
+        createBeautyList({autoComplete: {source: autocompleteList}})
+      })
+      testElementCreation()
+    })
+
+    describe('deleting elements', function() {
+      var autocompleteList = ['autocomplete1', 'autocomplete2', 'autocomplete3']
+      beforeEach(function() {
+        createBeautyList({autoComplete: {source: autocompleteList}})
+        beautyListInput().val('lol,bal,bar').trigger('keyup')
+      })
+      testElementDeletion()
+    })
+  })
+
 })
 
 describe('input behavior', function() {
