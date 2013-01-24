@@ -45,7 +45,7 @@ $('#some-element').beautyList({
   // should return true/false depending on the validity of the value.
   validators: [],
   // Placeholder text for input.
-  placeholderText: undefined
+  placeholderText: undefined,
   // Autocompletion, this requires the jquery ui autocomplete plugin.
   // (not possible to use with in-place-edit at the moment)
   autocomplete: {}
