@@ -220,7 +220,7 @@
 
       this.addItem = function() {
         var inputtedValue = input.val()
-        if (inputtedValue !== '') { self.addItemsToList(inputtedValue) }
+        if ($.trim(inputtedValue) !== '') { self.addItemsToList(inputtedValue) }
       }
 
       this.preFillItems = function() {
