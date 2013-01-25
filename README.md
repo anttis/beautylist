@@ -33,6 +33,8 @@ $('#some-element').beautyList({
   // Regular expression used to split the input value into list items.
   // Default matches whitespace characters, commas and semicolons.
   separator: /(?:,|\s|;)/g,
+  // Whether or not to save a tag on space
+  saveOnSpace: true,
   // Whether or not to dynamically change the width of the BeautyList input field
   dynamicInputSizing: true,
   // Whether or not to enable in-place-editing of list items
@@ -45,7 +47,7 @@ $('#some-element').beautyList({
   // should return true/false depending on the validity of the value.
   validators: [],
   // Placeholder text for input.
-  placeholderText: undefined
+  placeholderText: undefined,
   // Autocompletion, this requires the jquery ui autocomplete plugin.
   // (not possible to use with in-place-edit at the moment)
   autocomplete: {}
