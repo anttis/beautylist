@@ -33,6 +33,8 @@ $('#some-element').beautyList({
   // Regular expression used to split the input value into list items.
   // Default matches whitespace characters, commas and semicolons.
   separator: /(?:,|\s|;)/g,
+  // Whether or not to save a tag on space
+  saveOnSpace: true,
   // Whether or not to dynamically change the width of the BeautyList input field
   dynamicInputSizing: true,
   // Whether or not to enable in-place-editing of list items
