@@ -128,6 +128,21 @@ describe("Beautylist with options", function() {
     })
   })
 
+  describe('allowing spaces', function(){
+    beforeEach(function() { createBeautyList({ separator: /(?:,)/g, saveOnSpace: false }) })
+
+    it('does not add only whitespace values', function() {
+      beautyListInput().val('  ').trigger('blur')
+      expect(beautyListItems().length).toEqual(0)
+    })
+    it('adds multi-word values', function() {
+      beautyListInput().val('foo bar').trigger('blur')
+      expect(beautyListItems().length).toEqual(1)
+      expect($('.beautylist .beautylist-item:first').data('beautylist-value')).toEqual('foo bar')
+      expect(originalInput().val()).toEqual('foo bar')
+    })
+  })
+
   describe('using allowDuplicates:false', function(){
     beforeEach(function() { createBeautyList({allowDuplicates: false}) })
 
